@@ -1,0 +1,21 @@
+name: Scheduled ETL Pipeline
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run every day at midnight
+
+jobs:
+  run-etl-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
+    - name: Run ETL Pipeline
+      run: |
+        python etl_pipeline.py
